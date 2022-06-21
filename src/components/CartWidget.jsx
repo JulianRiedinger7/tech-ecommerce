@@ -1,10 +1,13 @@
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 
-const CartWidget = () => {
+const CartWidget = ({number}) => {
   return (
-    <a href="#!">
-      <AiOutlineShoppingCart size={32} color={'#61DAFB'} className='ml-5'/>
-    </a>
+    <>
+      <a href="#!">
+        <AiOutlineShoppingCart size={24} color={'#61DAFB'} className='ml-5 mr-1'/>
+      </a>
+      <span>{number}</span>
+    </>
   )
 }
 
