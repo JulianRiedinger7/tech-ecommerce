@@ -19,7 +19,7 @@ const ItemCount = ({stock, initial = 1, onAdd}) => {
         <span> {count} </span>
         <button onClick={add}> + </button>
       </div>
-      <button onClick={() => stock > 0 ? onAdd(count) : ''} className="text-2xl block mt-3 m-auto rounded border-sky-300 border-2 p-3 hover:opacity-70">Agregar al carrito</button>
+      <button onClick={() => stock > 0 && stock >= count ? onAdd(count) : console.log('No stock')} className="text-2xl block mt-3 m-auto rounded border-sky-300 border-2 p-3 hover:opacity-70">Agregar al carrito</button>
     </div>
   )
 }
