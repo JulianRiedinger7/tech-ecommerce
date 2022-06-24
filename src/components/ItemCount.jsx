@@ -4,11 +4,12 @@ const ItemCount = ({stock, initial = 1, onAdd}) => {
   const [count, setCount] = useState(initial)
 
   const add = () =>{
-    setCount(prevCount => prevCount < stock ? prevCount + 1 : prevCount);
+    count < stock && setCount(prevCount => prevCount + 1);
+    count >= stock && console.log('No se puede agregar mas que el stock disponible');
   }
 
   const decrement = () =>{
-    setCount(prevCount => prevCount > initial ? prevCount - 1 : initial)
+    count > 1 && setCount(prevCount => prevCount - 1)
   }
 
   return (
