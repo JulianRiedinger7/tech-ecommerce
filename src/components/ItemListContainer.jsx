@@ -2,12 +2,7 @@ import ItemCount from "./ItemCount"
 import { useState,useEffect } from "react";
 import ItemList from "./ItemList";
 import { PacmanLoader } from "react-spinners";
-import productsData from "../products";
-
-const promesa = new Promise((res,rej) =>{
-  res(productsData)
-})
-
+import ItemDetailContainer from "./ItemDetailContainer";
 
 const ItemListContainer = ({greeting}) => {
   const [products, setProducts] = useState([])
@@ -18,12 +13,17 @@ const ItemListContainer = ({greeting}) => {
 
   useEffect(()=>{
     setLoading(true)
-    setTimeout(() => {
-      promesa
-      .then(productsData => setProducts(productsData))
-      .catch(err => console.error(err))
-      setLoading(false)
-    }, 2000);
+    const getProducts = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products')
+        const data = await response.json()
+        setProducts(data.slice(0,10))
+        setLoading(false)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    getProducts()
   },[])
 
   return (
@@ -31,6 +31,7 @@ const ItemListContainer = ({greeting}) => {
       <h1 className="mt-5 text-4xl text-center ">{greeting}</h1>
       <ItemCount stock={10} initial={1} onAdd={onAdd}/>
       {loading ? <PacmanLoader className="mx-auto mt-10" /> : <ItemList products={products} />}
+      {products.length > 0 && <ItemDetailContainer />}
     </>
   )
 }
