@@ -1,18 +1,25 @@
 import logo from '../logo.svg';
 import CartWidget from './CartWidget';
+import { NavLink, Link } from 'react-router-dom'
 
 const NavBar = () =>{
   return(
-    <nav className='flex items-center px-6 py-2 bg-gray-700 text-white'>
-      <img src={logo} alt="react logo" className='h-20' />
-      <h3>RiedingerTech</h3>
-      <ul className='flex space-x-3 ml-auto'>
-        <li><a href="#!">Inicio</a></li>
-        <li><a href="#!">Ofertas</a></li>
-        <li><a href="#!">Catalogo</a></li>
-      </ul>
-      <CartWidget number={4}/>
-    </nav>
+    <header>
+      <nav className='flex items-center px-6 py-2 text-white bg-gray-700'>
+        <Link to='/'>
+          <img src={logo} alt="react logo" className='h-20' />
+        </Link>
+        <h3>RiedingerTech</h3>
+        <ul className='flex ml-auto space-x-3'>
+          <li><NavLink to='/category/smartphones'>Smartphones</NavLink></li>
+          <li><NavLink to='/category/laptops'>Laptops</NavLink></li>
+          <li><NavLink to='/category/fragrances'>Fragances</NavLink></li>
+        </ul>
+        <Link to='/cart'>
+          <CartWidget number={4}/>
+        </Link>
+      </nav>
+    </header>
   )
 }
 

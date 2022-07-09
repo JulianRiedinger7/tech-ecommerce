@@ -1,37 +1,35 @@
-import ItemCount from "./ItemCount"
 import { useState,useEffect } from "react";
 import ItemList from "./ItemList";
 import { PacmanLoader } from "react-spinners";
-import ItemDetailContainer from "./ItemDetailContainer";
+import { useParams } from 'react-router-dom'
 
 const ItemListContainer = ({greeting}) => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
-  const onAdd = count =>{
-    console.log(`Se han agregado ${count} items al carrito`);
-  }
+
+  const { categoryName } = useParams()
+
+  const URL = categoryName ? `https://dummyjson.com/products/category/${categoryName}` : 'https://dummyjson.com/products'
 
   useEffect(()=>{
     setLoading(true)
     const getProducts = async () => {
       try {
-        const response = await fetch('https://fakestoreapi.com/products')
+        const response = await fetch(URL)
         const data = await response.json()
-        setProducts(data.slice(0,10))
+        setProducts(data.products)
         setLoading(false)
       } catch (err) {
         console.error(err)
       }
     }
     getProducts()
-  },[])
+  },[URL])
 
   return (
     <>
-      <h1 className="mt-5 text-4xl text-center ">{greeting}</h1>
-      <ItemCount stock={10} initial={1} onAdd={onAdd}/>
+      <h1 className="mt-5 text-4xl text-center ">{greeting} {categoryName}</h1>
       {loading ? <PacmanLoader className="mx-auto mt-10" /> : <ItemList products={products} />}
-      {products.length > 0 && <ItemDetailContainer />}
     </>
   )
 }
