@@ -6,7 +6,7 @@ import ItemCount from './ItemCount'
 const ItemDetail = ({id,title,price,rating,images,category,description,brand,stock,discountPercentage}) => {
   const [quantity, setQuantity] = useState(0)
 
-  const { addItem } = useContext(CartContext)
+  const { addItem, addDiscount } = useContext(CartContext)
 
   const onAdd = count =>{
     setQuantity(count)
@@ -14,6 +14,7 @@ const ItemDetail = ({id,title,price,rating,images,category,description,brand,sto
     const item = {
       title,
       price,
+      discountPercentage,
       id
     }
     addItem(item, count)
@@ -29,7 +30,7 @@ const ItemDetail = ({id,title,price,rating,images,category,description,brand,sto
           <h3 className="text-xl font-bold">{brand}</h3>
           <div className="flex justify-between w-4/5 my-4 text-2xl font-semibold">
             <div>
-              <p>${Math.round(price - (price * discountPercentage / 100))}</p>
+              <p>${addDiscount(price, discountPercentage)}</p>
               <p className='text-lg line-through'>${price}</p>
             </div>
             <p>⭐ {rating} </p>

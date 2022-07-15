@@ -24,23 +24,16 @@ export const CartProvider = ({children}) => {
     } else setProducts(prevProducts => [...prevProducts, productToAdd]) 
   }
 
-  const removeItem = itemId =>{
-    console.log('Se elimino un producto')
-    setProducts(prevProducts => prevProducts.filter(product => product.id !== itemId))
-  }
+  const removeItem = itemId => setProducts(prevProducts => prevProducts.filter(product => product.id !== itemId))
+  
+  const clear = () => setProducts([])
 
-  const clear = () =>{
-    console.log('Se removieron todos los productos')
-    setProducts([])
-  }
+  const isInCart = id =>products.some(product => product.id === id)
 
-  const isInCart = id =>{
-    console.log('Esta en el carrito')
-    return products.some(product => product.id === id)
-  }
+  const addDiscount = (price, discountPercentage) => Math.round(price - (price * discountPercentage / 100))
 
   return (
-    <Provider value={{products, addItem, removeItem, clear}}>
+    <Provider value={{products, addItem, removeItem, clear, addDiscount}}>
       {children}
     </Provider>
   )

@@ -1,5 +1,5 @@
 import logo from '../logo.svg';
-import CartWidget from './CartWidget';
+import CartWidget from './cart/CartWidget';
 import { NavLink, Link } from 'react-router-dom'
 
 const NavBar = () =>{
@@ -16,7 +16,7 @@ const NavBar = () =>{
           <li><NavLink to='/category/fragrances'>Fragances</NavLink></li>
         </ul>
         <Link to='/cart'>
-          <CartWidget number={4}/>
+          <CartWidget/>
         </Link>
       </nav>
     </header>

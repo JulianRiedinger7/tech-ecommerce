@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const Item = ({id,title,price,rating,thumbnail}) => {
   return (
     <div className="flex flex-col items-center justify-center w-3/5 pb-4 mx-auto space-y-4 border-2 rounded-md shadow-xl border-cyan-400">
-      <div className='h-full '>
+      <div className='h-full w-full'>
         <img src={thumbnail} alt={title} className="object-cover w-full mx-auto text-center" />
       </div>
       <h2 className="text-xl lg:text-2xl">{title}</h2>
