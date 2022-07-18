@@ -1,5 +1,5 @@
 
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 export const CartContext = createContext()
 const { Provider } = CartContext
@@ -7,9 +7,19 @@ const { Provider } = CartContext
 
 export const CartProvider = ({children}) => {
   const [products, setProducts] = useState([])
+  const [quantity, setQuantity] = useState(0)
+
+  const getTotalQuantity = () => {
+    const qty = products.reduce((acc,product) => acc + product.quantity,0)
+    setQuantity(qty)
+  }
+
+  useEffect(()=>{
+    getTotalQuantity()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[products])
 
   const addItem = (item, quantity) =>{
-    console.log('se agrego un producto');
     const productToAdd = {
       ...item,
       quantity
@@ -26,14 +36,17 @@ export const CartProvider = ({children}) => {
 
   const removeItem = itemId => setProducts(prevProducts => prevProducts.filter(product => product.id !== itemId))
   
-  const clear = () => setProducts([])
+  const clear = () => {
+    setProducts([])
+    setQuantity(0)
+  }
 
-  const isInCart = id =>products.some(product => product.id === id)
+  const isInCart = id => products.some(product => product.id === id)
 
   const addDiscount = (price, discountPercentage) => Math.round(price - (price * discountPercentage / 100))
 
   return (
-    <Provider value={{products, addItem, removeItem, clear, addDiscount}}>
+    <Provider value={{products, addItem, removeItem, clear, addDiscount, quantity}}>
       {children}
     </Provider>
   )

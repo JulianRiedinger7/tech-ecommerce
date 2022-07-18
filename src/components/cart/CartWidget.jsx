@@ -4,14 +4,13 @@ import { CartContext } from '../context/CartContext'
 
 const CartWidget = () => {
 
-  const { products } = useContext(CartContext)
+  const { quantity } = useContext(CartContext)
 
-  const totalQuantity = products.reduce((acc,product) => acc + product.quantity,0)
 
   return (
     <div className=' flex items-center'>
       <AiOutlineShoppingCart size={24} color={'#61DAFB'} className='ml-5 mr-1'/>
-      {totalQuantity > 0 && <span>{totalQuantity}</span>}
+      {quantity > 0 && <span>{quantity}</span>}
     </div>
   )
 }

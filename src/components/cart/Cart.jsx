@@ -21,9 +21,9 @@ const Cart = () => {
             <Link to='/' className="px-4 py-2 mt-10 text-xl border-2 rounded-md shadow-md border-cyan-400 hover:opacity-70">Ir a tienda</Link>
           </div>)
         : <>
-            {products.map(product => <CartProduct {...product} />)}
+            {products.map(product => <CartProduct key={product.id} {...product} />)}
             <div className=' text-center'>
-              <h3>El precio total es de : ${totalPrice}</h3>
+              <h3>El precio total es de: ${totalPrice}</h3>
               <button onClick={clear} className="px-4 py-2 mt-10 text-xl border-2 rounded-md shadow-md border-cyan-400 hover:opacity-70">Vaciar Carrito</button>
             </div>
           </>

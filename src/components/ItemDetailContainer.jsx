@@ -26,7 +26,6 @@ const ItemDetailContainer = () => {
   console.log(item);
   return (
     <>
-      <h1 className=" mt-5 text-4xl text-center">Detalles</h1>
       {loading ? <PacmanLoader className="mx-auto mt-10" /> : <ItemDetail {...item}/>}
     </>
     

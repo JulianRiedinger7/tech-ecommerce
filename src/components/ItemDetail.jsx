@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from './context/CartContext'
+import { AiFillStar  } from 'react-icons/ai'
 import ItemCount from './ItemCount'
 
-const ItemDetail = ({id,title,price,rating,images,category,description,brand,stock,discountPercentage}) => {
+const ItemDetail = ({id,title,price,rating,images,category,description,brand,stock,discountPercentage,thumbnail}) => {
   const [quantity, setQuantity] = useState(0)
 
   const { addItem, addDiscount } = useContext(CartContext)
@@ -15,6 +16,7 @@ const ItemDetail = ({id,title,price,rating,images,category,description,brand,sto
       title,
       price,
       discountPercentage,
+      thumbnail,
       id
     }
     addItem(item, count)
@@ -33,7 +35,9 @@ const ItemDetail = ({id,title,price,rating,images,category,description,brand,sto
               <p>${addDiscount(price, discountPercentage)}</p>
               <p className='text-lg line-through'>${price}</p>
             </div>
-            <p>⭐ {rating} </p>
+            <p className=' flex items-center pb-6 gap-1 text-slate-500'>
+              <AiFillStar /> 
+              {rating} </p>
           </div>
           <p className="mt-2 mb-32 leading-6 lg:w-4/5">{description}</p>
           {quantity > 0
