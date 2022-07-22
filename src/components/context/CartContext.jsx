@@ -8,14 +8,24 @@ const { Provider } = CartContext
 export const CartProvider = ({children}) => {
   const [products, setProducts] = useState([])
   const [quantity, setQuantity] = useState(0)
+  const [total, setTotal] = useState(0)
 
   const getTotalQuantity = () => {
     const qty = products.reduce((acc,product) => acc + product.quantity,0)
     setQuantity(qty)
   }
 
+  const getTotalPrice = () => {
+    const totalPrice = products.reduce((acc,product) => {
+      const priceWithDiscount = addDiscount(product.price, product.discountPercentage)
+      return acc + (priceWithDiscount * product.quantity)
+    }, 0)
+    setTotal(totalPrice)
+  } 
+
   useEffect(()=>{
     getTotalQuantity()
+    getTotalPrice()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[products])
 
@@ -39,6 +49,7 @@ export const CartProvider = ({children}) => {
   const clear = () => {
     setProducts([])
     setQuantity(0)
+    setTotal(0)
   }
 
   const isInCart = id => products.some(product => product.id === id)
@@ -46,7 +57,7 @@ export const CartProvider = ({children}) => {
   const addDiscount = (price, discountPercentage) => Math.round(price - (price * discountPercentage / 100))
 
   return (
-    <Provider value={{products, addItem, removeItem, clear, addDiscount, quantity}}>
+    <Provider value={{products, total, addItem, removeItem, clear, addDiscount, quantity}}>
       {children}
     </Provider>
   )

@@ -8,25 +8,27 @@ import { CartProvider } from './components/context/CartContext';
 
 function App() {
 	return (
-		<BrowserRouter>
-			<CartProvider>
-				<NavBar />
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<ItemListContainer greeting="Bienvenido a RiedingerTech" />
-						}
-					/>
-					<Route
-						path="/category/:categoryName"
-						element={<ItemListContainer greeting="Categoria" />}
-					/>
-					<Route path="/item/:id" element={<ItemDetailContainer />} />
-					<Route path="/cart" element={<Cart />} />
-				</Routes>
-			</CartProvider>
-		</BrowserRouter>
+		<div className=" bg-slate-300 min-h-screen font-body">
+			<BrowserRouter>
+				<CartProvider>
+					<NavBar />
+					<Routes>
+						<Route
+							path="/"
+							element={
+								<ItemListContainer greeting="Bienvenido a RiedingerTech" />
+							}
+						/>
+						<Route
+							path="/category/:categoryName"
+							element={<ItemListContainer greeting="Categoria" />}
+						/>
+						<Route path="/item/:id" element={<ItemDetailContainer />} />
+						<Route path="/cart" element={<Cart />} />
+					</Routes>
+				</CartProvider>
+			</BrowserRouter>
+		</div>
 	);
 }
 

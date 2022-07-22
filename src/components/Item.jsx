@@ -8,9 +8,9 @@ const Item = ({id,title,price,rating,thumbnail,discountPercentage}) => {
   const { addDiscount } = useContext(CartContext)
 
   return (
-    <div className="flex flex-col items-center justify-center w-3/5 pb-4 mx-auto space-y-4 border-2 rounded-xl shadow-xl border-cyan-400">
+    <div className="flex flex-col items-center justify-center w-3/5 pb-4 mx-auto space-y-4 border-2 rounded-xl shadow-xl border-slate-800 bg-slate-200">
       <div className='h-full w-full'>
-        <img src={thumbnail} alt={title} className=" object-cover h-36 md:h-48 w-full mx-auto text-center rounded-t-xl" />
+        <img src={thumbnail} alt={title} className=" object-cover h-36 md:h-48 w-full rounded-t-xl" />
       </div>
       <h2 className="text-xl lg:text-2xl">{title}</h2>
       <p className="text-lg"><strong>${addDiscount(price,discountPercentage)}</strong> <span className='text-sm line-through'>${price}</span></p>

@@ -24,12 +24,12 @@ const ItemListContainer = ({greeting}) => {
       }
     }
     getProducts()
-  },[URL])
+  },[URL]) 
 
   return (
     <>
       <h1 className="mt-5 text-4xl text-center ">{greeting} {categoryName}</h1>
-      {loading ? <PacmanLoader className="mx-auto mt-10" /> : <ItemList products={products} />}
+      {loading ? <PacmanLoader cssOverride={{margin: '0 auto', marginTop: '1rem'}}/> : <ItemList products={products} />}
     </>
   )
 }

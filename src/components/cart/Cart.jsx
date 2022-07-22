@@ -6,12 +6,7 @@ import CartProduct from './CartProduct'
 
 const Cart = () => {
 
-  const { products, addDiscount, clear } = useContext(CartContext)
-
-  const totalPrice = products.reduce((acc,product) => {
-    const priceWithDiscount = addDiscount(product.price, product.discountPercentage)
-    return acc + (priceWithDiscount * product.quantity)
-  }, 0)
+  const { products,total, clear } = useContext(CartContext)
 
   return (
     <>
@@ -23,7 +18,7 @@ const Cart = () => {
         : <>
             {products.map(product => <CartProduct key={product.id} {...product} />)}
             <div className=' text-center'>
-              <h3>El precio total es de: ${totalPrice}</h3>
+              <h3>El precio total es de: ${total}</h3>
               <button onClick={clear} className="px-4 py-2 mt-10 text-xl border-2 rounded-md shadow-md border-cyan-400 hover:opacity-70">Vaciar Carrito</button>
             </div>
           </>
