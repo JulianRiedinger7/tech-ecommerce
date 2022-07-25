@@ -2,29 +2,38 @@ import { useState,useEffect } from "react";
 import ItemList from "./ItemList";
 import { PacmanLoader } from "react-spinners";
 import { useParams } from 'react-router-dom'
+import { db } from '../firebase/firebase'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 const ItemListContainer = ({greeting}) => {
   const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const { categoryName } = useParams()
 
-  const URL = categoryName ? `https://dummyjson.com/products/category/${categoryName}` : 'https://dummyjson.com/products'
+  
 
   useEffect(()=>{
-    setLoading(true)
-    const getProducts = async () => {
+    const getFirestoreProducts = async() =>{
       try {
-        const response = await fetch(URL)
-        const data = await response.json()
-        setProducts(data.products)
+        const productsCollection = collection(db, 'productos')
+        const q = categoryName ? query(productsCollection, where('category', '==', categoryName)) : productsCollection
+        const response = await getDocs(q)
+        const productsList = response.docs.map( doc => {
+          return {
+            id: doc.id,
+            ...doc.data()
+          }
+        })
+        setProducts(productsList)
         setLoading(false)
-      } catch (err) {
-        console.error(err)
+      } catch (error) {
+        console.error(error);
       }
     }
-    getProducts()
-  },[URL]) 
+    getFirestoreProducts()
+    
+  },[categoryName]) 
 
   return (
     <>

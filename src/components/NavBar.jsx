@@ -9,11 +9,11 @@ const NavBar = () =>{
         <Link to='/'>
           <img src={logo} alt="react logo" className='h-20' />
         </Link>
-        <h3>RiedingerTech</h3>
+        <h3>TecnoClothes</h3>
         <ul className='flex ml-auto space-x-3'>
           <li><NavLink to='/category/smartphones'>Smartphones</NavLink></li>
           <li><NavLink to='/category/laptops'>Laptops</NavLink></li>
-          <li><NavLink to='/category/fragrances'>Fragances</NavLink></li>
+          <li><NavLink to='/category/clothes'>Clothes</NavLink></li>
         </ul>
         <Link to='/cart'>
           <CartWidget/>

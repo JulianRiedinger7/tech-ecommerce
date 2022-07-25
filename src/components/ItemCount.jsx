@@ -20,7 +20,7 @@ const ItemCount = ({stock, initial = 1, onAdd}) => {
         <button onClick={add}> + </button>
       </div>
       <p className=" text-gray-500 text-lg">{stock} disponibles</p>
-      <button onClick={() => onAdd(count)} className="text-2xl block mt-3 shadow-md m-auto rounded border-sky-300 border-2 p-3 hover:opacity-70">Agregar al carrito</button>
+      <button onClick={() => onAdd(count)} className="btn-primary">Agregar al carrito</button>
     </div>
   )
 }

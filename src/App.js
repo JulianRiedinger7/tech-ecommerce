@@ -16,7 +16,7 @@ function App() {
 						<Route
 							path="/"
 							element={
-								<ItemListContainer greeting="Bienvenido a RiedingerTech" />
+								<ItemListContainer greeting="Bienvenido a TecnoClothes" />
 							}
 						/>
 						<Route

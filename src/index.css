@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 
+@layer components {
+  .btn-primary{
+    @apply p-2 rounded-md shadow-md bg-slate-900 text-white hover:opacity-90;
+  }
+}
+
 .active{
   border-bottom: 2px solid rgb(34 211 238 / 1);
 }

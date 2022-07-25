@@ -15,7 +15,7 @@ const Item = ({id,title,price,rating,thumbnail,discountPercentage}) => {
       <h2 className="text-xl lg:text-2xl">{title}</h2>
       <p className="text-lg"><strong>${addDiscount(price,discountPercentage)}</strong> <span className='text-sm line-through'>${price}</span></p>
       <div className=' flex justify-between items-center space-x-4 sm:space-x-24 md:space-x-16 xl:space-x-20'>
-        <Link to={`/item/${id}`} className="p-2 rounded-md shadow-md bg-cyan-400 text-gray border-cyan-400 hover:opacity-90">Ver detalles</Link>
+        <Link to={`/item/${id}`} className=" btn-primary">Ver detalles</Link>
         <div className=' flex items-center gap-1 text-slate-500'>
           <AiFillStar />
           <p className="text-lg">{rating}</p>

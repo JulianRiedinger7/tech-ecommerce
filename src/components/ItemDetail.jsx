@@ -4,7 +4,7 @@ import { CartContext } from './context/CartContext'
 import { AiFillStar  } from 'react-icons/ai'
 import ItemCount from './ItemCount'
 
-const ItemDetail = ({id,title,price,rating,images,category,description,brand,stock,discountPercentage,thumbnail}) => {
+const ItemDetail = ({id,title,price,rating,image,category,description,brand,stock,discountPercentage,thumbnail}) => {
   const [quantity, setQuantity] = useState(0)
 
   const { addItem, addDiscount } = useContext(CartContext)
@@ -26,7 +26,7 @@ const ItemDetail = ({id,title,price,rating,images,category,description,brand,sto
     <div className="w-10/12 p-4 mx-auto">
       <h3 className="mb-2 text-xl">Category: <strong>{category}</strong></h3>
       <div className="flex flex-col gap-6 lg:flex-row">
-        <img src={images[2] || images[1] || images[0]} alt={title} className="object-cover w-full md:w-3/5 md:mx-auto lg:w-2/5"/>
+        <img src={image} alt={title} className="object-cover w-full md:w-3/5 md:mx-auto lg:w-2/5 rounded-md"/>
         <div>
           <h2 className="text-2xl font-bold">{title}</h2>
           <h3 className="text-xl font-bold">{brand}</h3>
@@ -41,7 +41,7 @@ const ItemDetail = ({id,title,price,rating,images,category,description,brand,sto
           </div>
           <p className="mt-2 mb-32 leading-6 lg:w-4/5">{description}</p>
           {quantity > 0
-          ? <Link to='/cart' className="px-4 py-2 mt-10 text-xl border-2 rounded-md shadow-md border-cyan-400 hover:opacity-70">Finalizar Compra</Link>
+          ? <Link to='/cart' className=" btn-primary">Finalizar Compra</Link>
           : <ItemCount stock={stock} initial={1} onAdd={onAdd}/>
           }
         </div>
