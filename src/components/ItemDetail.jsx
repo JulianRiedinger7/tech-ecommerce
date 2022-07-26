@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { CartContext } from './context/CartContext'
 import { AiFillStar  } from 'react-icons/ai'
 import ItemCount from './ItemCount'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ItemDetail = ({id,title,price,rating,image,category,description,brand,stock,discountPercentage,thumbnail}) => {
   const [quantity, setQuantity] = useState(0)
@@ -11,7 +13,15 @@ const ItemDetail = ({id,title,price,rating,image,category,description,brand,stoc
 
   const onAdd = count =>{
     setQuantity(count)
-    console.log(`Se han agregado ${count} items al carrito`)
+    toast.success(`Se han agregado ${count} items al carrito`, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
     const item = {
       title,
       price,
@@ -47,7 +57,17 @@ const ItemDetail = ({id,title,price,rating,image,category,description,brand,stoc
           }
         </div>
       </div>
-
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
     </div>
   )
 }
