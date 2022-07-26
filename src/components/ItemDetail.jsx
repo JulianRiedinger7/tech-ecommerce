@@ -17,6 +17,7 @@ const ItemDetail = ({id,title,price,rating,image,category,description,brand,stoc
       price,
       discountPercentage,
       thumbnail,
+      stock,
       id
     }
     addItem(item, count)
